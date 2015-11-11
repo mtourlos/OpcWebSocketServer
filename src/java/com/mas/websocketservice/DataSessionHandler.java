@@ -94,7 +94,7 @@ public class DataSessionHandler {
                 .add("alarmEnerconCommerror",Data.getValues(5))
                 .add("alarmWindBurstError",Data.getValues(6))
                 .add("alarmHighWindSpeed",Data.getValues(7))
-                .add("alarmsCosfError",Data.getValues(8))
+                .add("alarmCosfError",Data.getValues(8))
                 .add("mvBreakerClosed",Data.getValues(9))
                 .add("towerBreakerClosed",Data.getValues(10))
                 .add("kw",Data.getValues(11))

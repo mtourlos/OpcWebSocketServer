@@ -110,54 +110,6 @@ public class OpcClient extends Thread{
 		             } else {
                                  String s = String.valueOf(state.getValue().getObject());
                                  //String s =state.getValue().getObjectAsUnsigned().getValue().toString();
-                                 /*if (element==0)
-                                    Data.setAlarmOverFrequency(s);
-                                else if (element==1)
-                                    Data.setAlarmOverVoltage(s);
-				else if (element==2)
-                                    Data.setAlarmUnderFrequency(s);
-				else if (element==3)
-                                    Data.setAlarmUnderVoltage(s);
-				else if (element==4)
-                                    Data.setAlarmAspCommerror(s);
-                                else if (element==5)
-                                    Data.setAlarmEnerconCommerror(s);
-                                else if (element==6)
-                                    Data.setAlarmWindBurstError(s);
-                                else if (element==7)
-                                    Data.getAlarmHighWindSpeed();
-                                else if (element==8)
-                                    Data.getAlarmCosfError();
-                                else if (element==9)
-                                    Data.setmVBreakerClosed(s);
-				else if (element==10)
-                                    Data.setTowerBreakerClosed(s);
-				else if (element==11)
-                                    Data.setKw(s);
-				else if (element==12)
-                                    Data.setSetpoint(s);
-				else if (element==13)
-                                    Data.setSetpointMode(s);
-				else if (element==14)
-                                    Data.setV1(s);
-				else if (element==15)
-                                    Data.setWindSpeed(s);
-				else if (element==16)
-                                    Data.setWg1Run(s);
-				else if (element==17)
-                                    Data.setWg1V1(s);
-                                else if (element==18)
-                                    Data.setWg1Kw(s);
-				else if (element==19)
-                                    Data.setWg2Run(s);
-				else if (element==20)
-                                    Data.setWg2V1(s);
-                                 else if (element==21)
-                                    Data.setWg2Kw(s);
-                                 //if (element==0)
-                                   // Data.setAnal(s);
-                                 //else if (element==1) 
-                                   // Data.setBool(s);*/
                                  Data.setValues(s, element);
 		                 //System.out.println("value2:"+String.valueOf(state.getValue().getObject()));
 		             }
