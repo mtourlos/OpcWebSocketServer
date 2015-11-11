@@ -14,7 +14,7 @@ import org.openscada.opc.lib.da.Item;
 import org.openscada.opc.lib.da.ItemState;
 import org.openscada.opc.lib.da.Server;
 import org.openscada.opc.lib.da.SyncAccess;
-import com.mas.model.Data;
+import com.mas.websocketmodel.Data;
 
 public class OpcClient extends Thread{
     private static boolean running;
@@ -41,9 +41,29 @@ public class OpcClient extends Thread{
         ci.setPassword("egwimioxristis");
         ci.setProgId("SWToolbox.TOPServer");
         //ci.setClsid("680DFBF7-C92D-484D-84BE-06DC3DECCD68"); // if ProgId is not working, try it using the Clsid instead
-        String[] tagList = new String[2];
-        tagList[0] = "Channel1.Device1.Tag1";
-        tagList[1] = "Channel1.Device1.Tag2";
+        String[] tagList = new String[22];
+        tagList[0] = "enercon.digital.Alarm-OverFrequency";
+        tagList[1] = "enercon.digital.Alarm-OverVoltage";
+        tagList[2] = "enercon.digital.Alarm-UnderFrequency";
+        tagList[3] = "enercon.digital.Alarm-UnderVoltage";
+        tagList[4] = "enercon.digital.Alarm-AspCommerror";
+        tagList[5] = "enercon.digital.Alarm-EnerconCommerror";
+        tagList[6] = "enercon.digital.Alarm-WindBurstError";
+        tagList[7] = "enercon.digital.Alarm-HighWindSpeed";
+        tagList[8] = "enercon.digital.Alarm-CosFError";
+        tagList[9] = "enercon.digital.MV_Breaker_Closed";
+        tagList[10] = "enercon.digital.Tower_Breaker_Closed";
+        tagList[11] = "enercon.totals.kw";
+        tagList[12] = "enercon.totals.setpoint";
+        tagList[13] = "enercon.totals.setpoint_mode";
+        tagList[14] = "enercon.totals.v1";
+        tagList[15] = "enercon.totals.wind_speed";
+        tagList[16] = "enercon.wg1.run";
+        tagList[17] = "enercon.wg1.v1";
+        tagList[18] = "enercon.wg1.kw";
+        tagList[19] = "enercon.wg2.run";
+        tagList[20] = "enercon.wg2.v1";
+        tagList[21] = "enercon.wg2.kw";
         // create a new server
         final Server server = new Server(ci, Executors.newSingleThreadScheduledExecutor());
         try {
@@ -51,10 +71,11 @@ public class OpcClient extends Thread{
             server.connect();
             // add sync access, poll every 500 ms
             final AccessBase access = new SyncAccess(server, 500);
-        
-            addItem(tagList[0],access,1);
-            addItem(tagList[1],access,2);
-        
+            for(int i=0;i<tagList.length;i++){
+                addItem(tagList[i],access,i);
+            }
+            
+            
             // start reading
             //System.out.println("test");
             access.bind();
@@ -81,19 +102,63 @@ public class OpcClient extends Thread{
 		    @Override
 		    public void changed(Item item, ItemState state) {
 		    	 try {
-		             if (state.getValue().getType() == JIVariant.VT_UI4) {
-                                 String s = String.valueOf(state.getValue().getObjectAsUnsigned().getValue());
-                                 if (element==1)
-                                    Data.setAnal(s);
-                                 else if (element==2)
-                                    Data.setBool(s);
+		             if (state.getValue().getType() == JIVariant.VT_UI4 || state.getValue().getType()==JIVariant.VT_UI2) {
+                                 //String s = String.valueOf(state.getValue().getObjectAsUnsigned().getValue());
+                                 String s =state.getValue().getObjectAsUnsigned().getValue().toString();
+                                 Data.setValues(s, element);
 		                 //System.out.println("value1:"+String.valueOf(state.getValue().getObjectAsUnsigned().getValue()));
 		             } else {
                                  String s = String.valueOf(state.getValue().getObject());
-                                 if (element==1)
-                                    Data.setAnal(s);
-                                 else if (element==2) 
-                                    Data.setBool(s);
+                                 //String s =state.getValue().getObjectAsUnsigned().getValue().toString();
+                                 /*if (element==0)
+                                    Data.setAlarmOverFrequency(s);
+                                else if (element==1)
+                                    Data.setAlarmOverVoltage(s);
+				else if (element==2)
+                                    Data.setAlarmUnderFrequency(s);
+				else if (element==3)
+                                    Data.setAlarmUnderVoltage(s);
+				else if (element==4)
+                                    Data.setAlarmAspCommerror(s);
+                                else if (element==5)
+                                    Data.setAlarmEnerconCommerror(s);
+                                else if (element==6)
+                                    Data.setAlarmWindBurstError(s);
+                                else if (element==7)
+                                    Data.getAlarmHighWindSpeed();
+                                else if (element==8)
+                                    Data.getAlarmCosfError();
+                                else if (element==9)
+                                    Data.setmVBreakerClosed(s);
+				else if (element==10)
+                                    Data.setTowerBreakerClosed(s);
+				else if (element==11)
+                                    Data.setKw(s);
+				else if (element==12)
+                                    Data.setSetpoint(s);
+				else if (element==13)
+                                    Data.setSetpointMode(s);
+				else if (element==14)
+                                    Data.setV1(s);
+				else if (element==15)
+                                    Data.setWindSpeed(s);
+				else if (element==16)
+                                    Data.setWg1Run(s);
+				else if (element==17)
+                                    Data.setWg1V1(s);
+                                else if (element==18)
+                                    Data.setWg1Kw(s);
+				else if (element==19)
+                                    Data.setWg2Run(s);
+				else if (element==20)
+                                    Data.setWg2V1(s);
+                                 else if (element==21)
+                                    Data.setWg2Kw(s);
+                                 //if (element==0)
+                                   // Data.setAnal(s);
+                                 //else if (element==1) 
+                                   // Data.setBool(s);*/
+                                 Data.setValues(s, element);
 		                 //System.out.println("value2:"+String.valueOf(state.getValue().getObject()));
 		             }
 		         } catch (JIException e) {

@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/mtourlos/Documents/NetBeansProjects/OpcWebSockets/src/java/com/mas/opc/OpcClient.java</file>
-            <file>file:/C:/Users/mtourlos/Documents/NetBeansProjects/OpcWebSockets/src/java/com/mas/websocket/DataSessionHandler.java</file>
-            <file>file:/C:/Users/mtourlos/Documents/NetBeansProjects/OpcWebSockets/src/java/com/mas/model/Data.java</file>
-            <file>file:/C:/Users/mtourlos/Documents/NetBeansProjects/OpcWebSockets/src/java/com/mas/websocket/DataWebSocketServer.java</file>
+            <file>file:/C:/Users/mtourlos/Documents/NetBeansProjects/OpcWebSockets/src/java/com/mas/websocketservice/DataSessionHandler.java</file>
+            <file>file:/C:/Users/mtourlos/Documents/NetBeansProjects/OpcWebSockets/src/java/com/mas/websocketmodel/Data.java</file>
             <file>file:/C:/Users/mtourlos/Documents/NetBeansProjects/OpcWebSockets/web/index.html</file>
             <file>file:/C:/Users/mtourlos/Documents/NetBeansProjects/OpcWebSockets/web/websocket.js</file>
         </group>

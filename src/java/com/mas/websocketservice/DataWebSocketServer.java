@@ -1,4 +1,4 @@
-package com.mas.websocket;
+package com.mas.websocketservice;
 
 import java.io.StringReader;
 import java.util.logging.Level;
